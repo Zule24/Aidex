@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Health Summary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .patient-info {
+      flex: 1;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .summary-section {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 4px solid #3498db;
+    }
+    h1 {
+      color: #2c3e50;
+      margin: 0;
+    }
+    h2 {
+      color: #3498db;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+      margin-top: 0;
+    }
+    .alert {
+      background-color: #ffe9e9;
+      border-left: 4px solid #e74c3c;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .section {
+      margin-bottom: 25px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #7f8c8d;
+      margin-top: 30px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+    .indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .normal {
+      background-color: #2ecc71;
+    }
+    .caution {
+      background-color: #f39c12;
+    }
+    .warning {
+      background-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="patient-info">
+      <h1>Patient Health Summary</h1>
+      <p><strong>Patient:</strong> Jane Doe | <strong>DOB:</strong> 05/15/1980 | <strong>ID:</strong> P1234567</p>
+    </div>
+    <div class="logo">HS</div>
+  </div>
+
+  <div class="summary-section">
+    <h2>Critical Health Information</h2>
+    <div class="alert">
+      <strong>Allergies:</strong> Penicillin (Severe), Peanuts
+    </div>
+    <p><strong>Blood Type:</strong> O+</p>
+    <p><strong>Chronic Conditions:</strong> Type 2 Diabetes, Hypertension</p>
+    <p><strong>Emergency Contact:</strong> John Doe (Spouse) | 555-123-4567</p>
+  </div>
+
+  <div class="section">
+    <h2>Recent Travel & Vaccinations</h2>
+    <table>
+      <tr>
+        <th>Destination</th>
+        <th>Travel Dates</th>
+        <th>Vaccinations</th>
+        <th>Date Administered</th>
+      </tr>
+      <tr>
+        <td>Thailand</td>
+        <td>Jun 10-25, 2024</td>
+        <td>Typhoid, Hepatitis A</td>
+        <td>May 15, 2024</td>
+      </tr>
+      <tr>
+        <td>Kenya</td>
+        <td>Feb 5-20, 2024</td>
+        <td>Yellow Fever, Malaria Prophylaxis</td>
+        <td>Jan 10, 2024</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Current Medications</h2>
+    <table>
+      <tr>
+        <th>Medication</th>
+        <th>Dosage</th>
+        <th>Frequency</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+      <tr>
+        <td>Metformin</td>
+        <td>500mg</td>
+        <td>Twice daily</td>
+        <td>Jan 15, 2023</td>
+        <td>Ongoing</td>
+      </tr>
+      <tr>
+        <td>Lisinopril</td>
+        <td>10mg</td>
+        <td>Once daily</td>
+        <td>Mar 10, 2023</td>
+        <td>Ongoing</td>
+      </tr>
+      <tr>
+        <td>Atorvastatin</td>
+        <td>20mg</td>
+        <td>Once daily (evening)</td>
+        <td>Apr 5, 2024</td>
+        <td>Ongoing</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Recent Vital Signs</h2>
+    <table>
+      <tr>
+        <th>Metric</th>
+        <th>Latest Value</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Blood Pressure</td>
+        <td>132/85 mmHg</td>
+        <td>Oct 12, 2024</td>
+        <td><span class="indicator caution"></span> Elevated</td>
+      </tr>
+      <tr>
+        <td>Heart Rate</td>
+        <td>72 bpm</td>
+        <td>Oct 12, 2024</td>
+        <td><span class="indicator normal"></span> Normal</td>
+      </tr>
+      <tr>
+        <td>Blood Glucose (Fasting)</td>
+        <td>145 mg/dL</td>
+        <td>Oct 10, 2024</td>
+        <td><span class="indicator caution"></span> Elevated</td>
+      </tr>
+      <tr>
+        <td>BMI</td>
+        <td>27.5</td>
+        <td>Oct 12, 2024</td>
+        <td><span class="indicator caution"></span> Overweight</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Recent Doctor Visits</h2>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Provider</th>
+        <th>Reason</th>
+        <th>Follow-up</th>
+      </tr>
+      <tr>
+        <td>Oct 12, 2024</td>
+        <td>Dr. Sarah Johnson (Primary Care)</td>
+        <td>Quarterly Diabetes Check</td>
+        <td>Jan 12, 2025</td>
+      </tr>
+      <tr>
+        <td>Sep 5, 2024</td>
+        <td>Dr. Michael Chen (Endocrinology)</td>
+        <td>Diabetes Management</td>
+        <td>Dec 5, 2024</td>
+      </tr>
+      <tr>
+        <td>Aug 18, 2024</td>
+        <td>Dr. Robert Garcia (Cardiology)</td>
+        <td>Hypertension Follow-up</td>
+        <td>Feb 18, 2025</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>Last updated: October 15, 2024 | This is a summary report and may not contain all medical information. Please consult with your healthcare provider for complete details.</p>
+    <p>Health Smart Patient Portal | Download PDF | Share with Provider</p>
+  </div>
+</body>
+</html>

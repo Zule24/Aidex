@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIDEX Health Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Custom hover effect for cards */
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    .hero-bg {
+      background: linear-gradient(to right, #10b981, #3b82f6);
+    }
+    /* Navbar Dropdown */
+    .nav-item:hover .nav-dropdown {
+      display: block;
+    }
+    .nav-dropdown a:hover {
+      background-color: #f1f5f9;
+    }
+    /* Multi-Step Symptom Checker */
+    .step { display: none; }
+    .step.active { display: block; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-3">
+        <!-- Logo / Title -->
+        <div class="flex items-center space-x-2">
+          <img src="https://via.placeholder.com/50" alt="Logo" class="w-10 h-10 rounded-full" />
+          <span class="text-xl font-bold text-gray-700">AIDEX Health</span>
+        </div>
+        <!-- Desktop Nav Links -->
+        <ul class="hidden md:flex items-center space-x-6">
+          <!-- Services Dropdown -->
+          <li class="nav-item relative group">
+            <button class="inline-flex items-center font-medium hover:text-blue-600">
+              Services
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg hidden z-10">
+              <a href="immunization.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Immunizations</a>
+              <a href="medication.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Medication Filler</a>
+              <a href="smart_watch.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Smart Watch</a>
+              <a href="visit_history.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Visit History</a>
+              <a href="health_analysis.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Analysis</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Appointment</a>
+              <a href="support.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Support</a>
+            </div>
+          </li>
+          <!-- About Us Dropdown -->
+          <li class="nav-item relative group">
+            <button class="inline-flex items-center font-medium hover:text-blue-600">
+              About Us
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded shadow-lg hidden z-10">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Who We Serve</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Accountability</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Contact Us</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Strategic Priorities</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Get Involved</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Indigenous Health</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Public Health</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Leadership</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Media Centre</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Our Vision</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Development Projects</a>
+            </div>
+          </li>
+          <!-- Resources Dropdown -->
+          <li class="nav-item relative group">
+            <button class="inline-flex items-center font-medium hover:text-blue-600">
+              Resources
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded shadow-lg hidden z-10">
+              <a href="https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents" target="_blank" class="block px-4 py-2 text-sm text-gray-700">Pharmacare BC</a>
+              <a href="https://www.alberta.ca/health.aspx" target="_blank" class="block px-4 py-2 text-sm text-gray-700">Alberta Health</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Nutrition Resources</a>
+            </div>
+          </li>
+          <!-- Specialized Care Dropdown -->
+          <li class="nav-item relative group">
+            <button class="inline-flex items-center font-medium hover:text-blue-600">
+              Specialized Care
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded shadow-lg hidden z-10">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Disability Support</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">ADHD Programs</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700">Crohn's Disease</a>
+            </div>
+          </li>
+          <!-- Emergency Button -->
+          <li>
+            <a href="#" class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold flex items-center space-x-1 hover:bg-red-700 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m2-4h.01M12 8c-3.866 0-7 3.134-7 7v5h14v-5c0-3.866-3.134-7-7-7z"></path>
+              </svg>
+              <span>Emergency</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Mobile Menu Button (if needed) -->
+        <div class="md:hidden">
+          <button class="text-gray-600 hover:text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Multi-Step AI Symptom Checker Section -->
+    <section id="symptom-checker" class="bg-white p-8 rounded shadow">
+      <!-- Step 1: Age Group -->
+      <div id="step1" class="step active mb-8">
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/80" alt="Age Icon" class="w-20 h-20 mr-4 rounded-full border border-gray-300" />
+          <h2 class="text-2xl font-bold">Select your age group</h2>
+        </div>
+        <div class="flex space-x-4">
+          <button onclick="selectAge('Adult/Teen')" class="bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600 transition">
+            Adult/Teen
+          </button>
+          <button onclick="selectAge('Child')" class="bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600 transition">
+            Child
+          </button>
+        </div>
+      </div>
+      
+      <!-- Step 2: Body Region -->
+      <div id="step2" class="step mb-8">
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/80" alt="Body Region Icon" class="w-20 h-20 mr-4 rounded-full border border-gray-300" />
+          <h2 class="text-2xl font-bold">Where do you feel the symptom?</h2>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <button onclick="selectRegion('Head')" class="bg-gray-200 px-4 py-3 rounded hover:bg-gray-300 transition">Head</button>
+          <button onclick="selectRegion('Chest')" class="bg-gray-200 px-4 py-3 rounded hover:bg-gray-300 transition">Chest</button>
+          <button onclick="selectRegion('Abdomen')" class="bg-gray-200 px-4 py-3 rounded hover:bg-gray-300 transition">Abdomen</button>
+          <button onclick="selectRegion('Legs')" class="bg-gray-200 px-4 py-3 rounded hover:bg-gray-300 transition">Legs</button>
+        </div>
+        <div class="mt-6">
+          <button onclick="prevStep()" class="mr-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Back</button>
+          <button onclick="nextStep()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Next</button>
+        </div>
+      </div>
+      
+      <!-- Step 3: Symptom Selection -->
+      <div id="step3" class="step mb-8">
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/80" alt="Symptom Icon" class="w-20 h-20 mr-4 rounded-full border border-gray-300" />
+          <h2 class="text-2xl font-bold">Select a symptom</h2>
+        </div>
+        <select id="symptomSelect" class="border border-gray-300 rounded px-3 py-2 w-full">
+          <optgroup label="Digestive">
+            <option value="Abdominal Pain">Abdominal Pain</option>
+            <option value="Nausea">Nausea</option>
+            <option value="Bloating">Bloating</option>
+          </optgroup>
+          <optgroup label="Respiratory">
+            <option value="Cough">Cough</option>
+            <option value="Shortness of Breath">Shortness of Breath</option>
+            <option value="Chest Pain">Chest Pain</option>
+          </optgroup>
+          <optgroup label="Neurological">
+            <option value="Headache">Headache</option>
+            <option value="Dizziness">Dizziness</option>
+            <option value="Vision Changes">Vision Changes</option>
+          </optgroup>
+        </select>
+        <div class="mt-6">
+          <button onclick="prevStep()" class="mr-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Back</button>
+          <button onclick="selectSymptom()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Next</button>
+        </div>
+      </div>
+      
+      <!-- Step 4: Confirm Severity -->
+      <div id="step4" class="step mb-8">
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/80" alt="Severity Icon" class="w-20 h-20 mr-4 rounded-full border border-gray-300" />
+          <h2 class="text-2xl font-bold">How severe are your symptoms?</h2>
+        </div>
+        <div class="flex space-x-4">
+          <button onclick="selectSeverity('Mild')" class="bg-green-400 text-white px-6 py-3 rounded shadow hover:bg-green-500 transition">
+            Mild
+          </button>
+          <button onclick="selectSeverity('Moderate')" class="bg-yellow-500 text-white px-6 py-3 rounded shadow hover:bg-yellow-600 transition">
+            Moderate
+          </button>
+          <button onclick="selectSeverity('Severe')" class="bg-red-500 text-white px-6 py-3 rounded shadow hover:bg-red-600 transition">
+            Severe
+          </button>
+        </div>
+        <div class="mt-6">
+          <button onclick="prevStep()" class="mr-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Back</button>
+        </div>
+      </div>
+      
+      <!-- Step 5: Summary and Proceed -->
+      <div id="step5" class="step">
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/80" alt="Summary Icon" class="w-20 h-20 mr-4 rounded-full border border-gray-300" />
+          <h2 class="text-2xl font-bold">Summary</h2>
+        </div>
+        <div id="summaryText" class="mb-6 text-lg"></div>
+        <div>
+          <button onclick="prevStep()" class="mr-4 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Back</button>
+          <button onclick="continueToChat()" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">
+            Continue to Chat
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
+  <!-- JavaScript for multi-step logic -->
+  <script>
+    let currentStep = 1;
+    let selections = {
+      age: '',
+      region: '',
+      symptom: '',
+      severity: ''
+    };
+
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(div => div.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+      currentStep = step;
+    }
+
+    function nextStep() {
+      if (currentStep === 2 && !selections.region) {
+        alert("Please select a body region.");
+        return;
+      }
+      if (currentStep < 5) {
+        showStep(currentStep + 1);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    }
+
+    function selectAge(age) {
+      selections.age = age;
+      nextStep();
+    }
+
+    function selectRegion(region) {
+      selections.region = region;
+      nextStep();
+    }
+
+    function selectSymptom() {
+      const symptom = document.getElementById("symptomSelect").value;
+      selections.symptom = symptom;
+      nextStep();
+    }
+
+    function selectSeverity(severity) {
+      selections.severity = severity;
+      nextStep();
+      showSummary();
+    }
+
+    function showSummary() {
+      const summaryText = `
+        <strong>Age Group:</strong> ${selections.age}<br>
+        <strong>Body Region:</strong> ${selections.region}<br>
+        <strong>Symptom:</strong> ${selections.symptom}<br>
+        <strong>Severity:</strong> ${selections.severity}
+      `;
+      document.getElementById("summaryText").innerHTML = summaryText;
+    }
+
+    function continueToChat() {
+      alert("Proceeding to chat with context:\n" +
+        "Age Group: " + selections.age + "\n" +
+        "Region: " + selections.region + "\n" +
+        "Symptom: " + selections.symptom + "\n" +
+        "Severity: " + selections.severity);
+      // Optionally redirect:
+      // window.location.href = "chat.html";
+    }
+  </script>
+  
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-6 text-center">
+      <p class="text-gray-600">&copy; 2025 AIDEX Health. All rights reserved.</p>
+      <p class="text-gray-500 text-sm mt-2">For emergency inquiries, please call 911.</p>
+    </div>
+  </footer>
+</body>
+</html>

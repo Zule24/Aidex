@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Smart - Medication Filler</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f7fa;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .badge-success {
+      background-color: #e6f7ed;
+      color: #2ecc71;
+    }
+    .badge-warning {
+      background-color: #fff7e6;
+      color: #f39c12;
+    }
+    .badge-danger {
+      background-color: #fce6e6;
+      color: #e74c3c;
+    }
+    .medication-list {
+      margin-top: 20px;
+    }
+    .medication-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .medication-item:last-child {
+      border-bottom: none;
+    }
+    .med-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #e8f4fd;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+    }
+    .med-icon img {
+      width: 30px;
+      height: 30px;
+    }
+    .med-details {
+      flex: 1;
+    }
+    .med-name {
+      font-weight: 600;
+      margin: 0 0 5px 0;
+    }
+    .med-info {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .med-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    .button-outline {
+      background-color: transparent;
+      color: #3498db;
+      border: 1px solid #3498db;
+    }
+    .button:hover {
+      background-color: #2980b9;
+    }
+    .button-outline:hover {
+      background-color: #e8f4fd;
+    }
+    .progress-container {
+      height: 10px;
+      background-color: #ecf0f1;
+      border-radius: 5px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background-color: #3498db;
+      border-radius: 5px;
+    }
+    .critical-low {
+      background-color: #e74c3c;
+    }
+    .low {
+      background-color: #f39c12;
+    }
+    .service-list {
+      margin-top: 20px;
+    }
+    .service-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .service-item:last-child {
+      border-bottom: none;
+    }
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #e8f4fd;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+    }
+    .service-icon img {
+      width: 30px;
+      height: 30px;
+    }
+    .service-details {
+      flex: 1;
+    }
+    .service-title {
+      font-weight: 600;
+      margin: 0 0 5px 0;
+    }
+    .service-info {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .support-section {
+      margin-top: 40px;
+    }
+    .recommendations {
+      background-color: #f0f7ff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    .recommendation-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #cce5ff;
+    }
+    .recommendation-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .recommendation-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .recommendation-description {
+      color: #4a5568;
+      margin: 0;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Medication Filler</h1>
+      <p>Manage your prescriptions, refills, and medication schedule</p>
+    </div>
+    <div class="logo">HS</div>
+  </div>
+
+  <div class="dashboard">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Active Prescriptions</h2>
+        <span class="badge badge-success">5 Active</span>
+      </div>
+      <div class="medication-list">
+        <div class="medication-item">
+          <div class="med-icon">
+            <img src="/api/placeholder/30/30" alt="Medication" />
+          </div>
+          <div class="med-details">
+            <h3 class="med-name">Lisinopril 10mg</h3>
+            <p class="med-info">Take 1 tablet daily | Dr. Sarah Johnson</p>
+            <p class="med-info">Refills: 2 remaining | Expires: Dec 15, 2024</p>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: 15%;"></div>
+            </div>
+            <p class="med-info"><strong>Low supply:</strong> 5 days remaining</p>
+          </div>
+          <div class="med-actions">
+            <button class="button">Refill Now</button>
+          </div>
+        </div>
+        
+        <div class="medication-item">
+          <div class="med-icon">
+            <img src="/api/placeholder/30/30" alt="Medication" />
+          </div>
+          <div class="med-details">
+            <h3 class="med-name">Metformin 500mg</h3>
+            <p class="med-info">Take 1 tablet twice daily | Dr. Michael Chen</p>
+            <p class="med-info">Refills: 3 remaining | Expires: Feb 10, 2025</p>
+            <div class="progress-container">
+              <div class="progress-bar critical-low" style="width: 5%;"></div>
+            </div>
+            <p class="med-info"><strong>Critical low:</strong> 2 days remaining</p>
+          </div>
+          <div class="med-actions">
+            <button class="button">Refill Now</button>
+          </div>
+        </div>
+        
+        <div class="medication-item">
+          <div class="med-icon">
+            <img src="/api/placeholder/30/30" alt="Medication" />
+          </div>
+          <div class="med-details">
+            <h3 class="med-name">Atorvastatin 20mg</h3>
+            <p class="med-info">Take 1 tablet daily at bedtime | Dr. Sarah Johnson</p>
+            <p class="med-info">Refills: 5 remaining | Expires: Mar 5, 2025</p>
+            <div class="progress-container">
+              <div class="progress-bar" style="width: 60%;"></div>
+            </div>
+            <p class="med-info"><strong>Supply:</strong> 18 days remaining</p>
+          </div>
+          <div class="med-actions">
+            <button class="button button-outline">Schedule Refill</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Prescription Services</h2>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-icon">
+            <img src="/api/placeholder/30/30" alt="Auto-Refill" />
+          </div>
+          <div class="service-details">
+            <h3 class="service-title">Auto-Refill Service</h3>
+            <p class="service-info">Set up automatic refills when medication is running low</p>
+          </div>
+          <div class="med-actions">
+            <button class="button">Manage</button>
+          </div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-icon">
+            <img src="/api/placeholder/30/30" alt="Doctor Consultation" />
+          </div>
+          <div class="service-details">
+            <h3 class="service-title">Medication Consultation</h3>
+            <p class="service-info">Schedule a virtual consultation with your doctor about medication adjustments</p>
+          </div>
+          <div class="med-actions">
+            <button class="button">Schedule</button>
+          </div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-icon">
+            <img src="/api/placeholder/30/30" alt="Delivery" />
+          </div>
+          <div class="service-details">
+            <h3 class="service-title">Home Delivery</h3>
+            <p class="service-info">Get your medications delivered directly to your doorstep</p>
+          </div>
+          <div class="med-actions">
+            <button class="button button-outline">Set Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Upcoming Medication Actions</h2>
+    </div>
+    <div class="medication-list">
+      <div class="medication-item">
+        <div class="med-icon">
+          <img src="/api/placeholder/30/30" alt="Refill" />
+        </div>
+        <div class="med-details">
+          <h3 class="med-name">Refill Due: Metformin 500mg</h3>
+          <p class="med-info">Critical: Only 2 days of medication remaining</p>
+          <p class="med-info">Last filled: Oct 5, 2024 | Pharmacy: HealthPlus Pharmacy</p>
+        </div>
+        <div class="med-actions">
+          <button class="button">Refill Now</button>
+          <button class="button button-outline">Schedule Later</button>
+        </div>
+      </div>
+      
+      <div class="medication-item">
+        <div class="med-icon">
+          <img src="/api/placeholder/30/30" alt="Refill" />
+        </div>
+        <div class="med-details">
+          <h3 class="med-name">Refill Due: Lisinopril 10mg</h3>
+          <p class="med-info">Low: Only 5 days of medication remaining</p>
+          <p class="med-info">Last filled: Sep 20, 2024 | Pharmacy: HealthPlus Pharmacy</p>
+        </div>
+        <div class="med-actions">
+          <button class="button">Refill Now</button>
+          <button class="button button-outline">Schedule Later</button>
+        </div>
+      </div>
+      
+      <div class="medication-item">
+        <div class="med-icon">
+          <img src="/api/placeholder/30/30" alt="Prescription" />
+        </div>
+        <div class="med-details">
+          <h3 class="med-name">Prescription Expiring: Hydrochlorothiazide 25mg</h3>
+          <p class="med-info">Expires in 15 days: Nov 20, 2024</p>
+          <p class="med-info">Prescribing Doctor: Dr. Robert Garcia</p>
+        </div>
+        <div class="med-actions">
+          <button class="button">Request Renewal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recommendations">
+    <h2>Personalized Health Recommendations</h2>
+    <div class="recommendation-item">
+      <h3 class="recommendation-title">Medication Schedule Optimization</h3>
+      <p class="recommendation-description">Based on your current medications, taking your Lisinopril and Metformin together in the morning with food may help improve absorption and reduce side effects.</p>
+    </div>
+    <div class="recommendation-item">
+      <h3 class="recommendation-title">Consider 90-Day Supply</h3>
+      <p class="recommendation-description">For your long-term medications like Atorvastatin and Lisinopril, switching to a 90-day supply could save you money and reduce trips to the pharmacy.</p>
+    </div>
+    <div class="recommendation-item">
+      <h3 class="recommendation-title">Potential Drug Interaction Alert</h3>
+      <p class="recommendation-description">Your recent addition of over-the-counter ibuprofen may interact with Lisinopril. Consider consulting with your doctor about alternatives for pain management.</p>
+    </div>
+  </div>
+
+  <div class="support-section">
+    <div class="card">
+      <h2>Need Help With Your Medications?</h2>
+      <p>Our healthcare professionals are available to assist with medication questions and adjustments.</p>
+      <div class="service-list">
+        <div class="service-item">
+          <div class="service-icon">
+            <img src="/api/placeholder/30/30" alt="Chat" />
+          </div>
+          <div class="service-details">
+            <h3 class="service-title">Chat with a Pharmacist</h3>
+            <p class="service-info">Get answers about your medications, side effects, and interactions</p>
+          </div>
+          <div class="med-actions">
+            <button class="button">Start Chat</button>
+          </div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-icon">
+            <img src="/api/placeholder/30/30" alt="Doctor" />
+          </div>
+          <div class="service-details">
+            <h3 class="service-title">Schedule Medication Review</h3>
+            <p class="service-info">Comprehensive review of all your medications with a healthcare provider</p>
+          </div>
+          <div class="med-actions">
+            <button class="button">Schedule Review</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Health Smart Medication Filler | Last updated: October 15, 2024</p>
+    <p>For medical emergencies, please call 911 or go to the nearest emergency room.</p>
+    <p>© 2025 Health Smart. All rights reserved.</p>
+  </div>
+</body>
+</html>

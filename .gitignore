@@ -1,0 +1,71 @@
+# OS-related files (macOS & Windows)
+.DS_Store
+.Trashes
+Thumbs.db
+desktop.ini
+
+# Python virtual environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*$py.class
+
+# Python package management files
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# Environment variable files (security risk)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+config/secrets.yml
+
+# Build and deployment files
+build/
+dist/
+out/
+coverage/
+*.egg-info
+
+# Logs and cache files
+*.log
+*.out
+*.pid
+*.db
+*.sqlite3
+htmlcov/
+pytest_cache/
+*.seed
+*.sync
+
+# Jupyter Notebook cache
+.ipynb_checkpoints/
+
+# IDE and editor configuration files
+.vscode/
+.idea/
+.history/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Docker configuration
+docker-compose.override.yml
+
+# Temporary and backup files
+*.bak
+*.tmp
+*.orig
+*.lock
+
+# Test and coverage-related files
+.coverage
+pytest_cache/

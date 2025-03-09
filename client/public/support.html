@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Smart Support</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .support-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .support-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .support-card:hover {
+      transform: translateY(-5px);
+    }
+    .icon {
+      width: 70px;
+      height: 70px;
+      background-color: #e8f4fd;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .icon img {
+      width: 40px;
+      height: 40px;
+    }
+    .ai-demo {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .chat-container {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .chat-message {
+      margin-bottom: 15px;
+      display: flex;
+    }
+    .user-message {
+      justify-content: flex-end;
+    }
+    .message-bubble {
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 18px;
+    }
+    .ai-bubble {
+      background-color: #f0f0f0;
+      border-top-left-radius: 5px;
+    }
+    .user-bubble {
+      background-color: #3498db;
+      color: white;
+      border-top-right-radius: 5px;
+    }
+    .feature-highlight {
+      background-color: #f8f9fa;
+      border-left: 4px solid #3498db;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .image-upload {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .analysis-result {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #2980b9;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Health Smart Support</h1>
+      <p>Get help when you need it, powered by AI and healthcare professionals</p>
+    </div>
+    <div class="logo">HS</div>
+  </div>
+
+  <div class="support-container">
+    <div class="support-card">
+      <div class="icon">
+        <img src="/api/placeholder/40/40" alt="AI Chatbot" />
+      </div>
+      <h2>AI Chatbot Assistance</h2>
+      <p>Get instant answers to your health questions, app navigation help, and appointment scheduling assistance.</p>
+      <p>Our AI chatbot is available 24/7 to help with:</p>
+      <ul>
+        <li>Medication reminders and information</li>
+        <li>Symptom initial assessment</li>
+        <li>App feature guidance</li>
+        <li>Appointment scheduling</li>
+      </ul>
+      <button class="button">Chat with Health Assistant</button>
+    </div>
+
+    <div class="support-card">
+      <div class="icon">
+        <img src="/api/placeholder/40/40" alt="Medical Professional" />
+      </div>
+      <h2>Medical Professionals for Urgent Inquiries</h2>
+      <p>Connect with licensed healthcare professionals for time-sensitive medical questions.</p>
+      <p>Available for:</p>
+      <ul>
+        <li>Urgent medication questions</li>
+        <li>Symptom assessment guidance</li>
+        <li>Post-procedure clarifications</li>
+        <li>Test result explanations</li>
+      </ul>
+      <p><strong>Average response time:</strong> 15 minutes during business hours</p>
+      <button class="button">Connect with a Professional</button>
+    </div>
+
+    <div class="support-card">
+      <div class="icon">
+        <img src="/api/placeholder/40/40" alt="AI Image Analysis" />
+      </div>
+      <h2>Image Analysis with AI</h2>
+      <p>Upload images for AI-powered analysis to help with initial assessment of:</p>
+      <ul>
+        <li>Skin conditions and rashes</li>
+        <li>Wound healing progress</li>
+        <li>Medication identification</li>
+        <li>Visual symptoms</li>
+      </ul>
+      <p><strong>Note:</strong> This feature is for initial guidance only and does not replace professional medical diagnosis.</p>
+      <button class="button">Upload Image for Analysis</button>
+    </div>
+  </div>
+
+  <div class="ai-demo">
+    <h2>AI Chatbot Demo</h2>
+    <p>Our AI assistant can help answer health questions and provide guidance on using the app.</p>
+    
+    <div class="chat-container">
+      <div class="chat-message">
+        <div class="message-bubble ai-bubble">
+          Hello! I'm your Health Smart assistant. How can I help you today?
+        </div>
+      </div>
+      <div class="chat-message user-message">
+        <div class="message-bubble user-bubble">
+          I forgot when to take my blood pressure medication.
+        </div>
+      </div>
+      <div class="chat-message">
+        <div class="message-bubble ai-bubble">
+          Based on your prescription for Lisinopril 10mg, you should take it once daily in the morning. Your last refill was on October 5th, and you have 15 days of medication remaining. Would you like me to set a daily reminder for you?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-highlight">
+    <h2>AI-Powered Health Monitoring and Diagnosis</h2>
+    <p>Our advanced AI system helps monitor your health data and provides alerts for potential concerns:</p>
+    <ul>
+      <li>Continuous analysis of Smart Watch data</li>
+      <li>Pattern recognition in vital signs</li>
+      <li>Early detection of anomalies</li>
+      <li>Personalized health insights</li>
+    </ul>
+  </div>
+
+  <div class="ai-demo">
+    <h2>Image Analysis for Health Monitoring</h2>
+    <p>Upload photos for AI analysis to help track health conditions or identify concerns.</p>
+    
+    <div class="image-upload">
+      <img src="/api/placeholder/60/60" alt="Upload icon" />
+      <h3>Upload Image for Analysis</h3>
+      <p>Take a photo or upload an existing image for AI assessment</p>
+      <button class="button">Upload Image</button>
+    </div>
+    
+    <div class="analysis-result">
+      <h3>Sample Analysis Result</h3>
+      <p><strong>Image type:</strong> Skin rash</p>
+      <p><strong>AI assessment:</strong> The image shows characteristics consistent with contact dermatitis. Common causes include reaction to plants, soaps, or metals.</p>
+      <p><strong>Recommendation:</strong> If the rash persists for more than 3 days or worsens, please consult with a dermatologist. Avoid scratching and potential irritants.</p>
+      <p><strong>Confidence level:</strong> 78% - This is not a diagnosis. Please consult a healthcare professional.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Health Smart Support | Available 24/7 | Emergency? Call 911</p>
+    <p>AI assistance is not a replacement for professional medical advice, diagnosis, or treatment.</p>
+    <p>© 2025 Health Smart. All rights reserved.</p>
+  </div>
+</body>
+</html>

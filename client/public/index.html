@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIDEX Health Portal</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Custom hover effect for cards */
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    .hero-bg {
+      background: linear-gradient(to right, #10b981, #3b82f6);
+    }
+    /* Show dropdown on hover */
+    .nav-item:hover .nav-dropdown {
+      display: block;
+    }
+    .nav-dropdown a:hover {
+      background-color: #f1f5f9;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-3">
+        <!-- Logo / Title -->
+        <div class="flex items-center space-x-2">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="Logo"
+            class="w-10 h-10 rounded-full"
+          />
+          <span class="text-xl font-bold text-gray-700">AIDEX Health</span>
+        </div>
+  
+        <!-- Nav Links -->
+        <ul class="hidden md:flex items-center space-x-6">
+          <!-- Services -->
+          <li class="nav-item relative group">
+            <button
+              class="inline-flex items-center font-medium hover:text-blue-600"
+            >
+              Services
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <!-- Dropdown -->
+            <div
+              class="nav-dropdown absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg hidden z-10"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Immunizations
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Medication Filler
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Smart Watch
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Visit History
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Analysis
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Appointment
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Support
+              </a>
+            </div>
+          </li>
+  
+          <!-- About Us -->
+          <li class="nav-item relative group">
+            <button
+              class="inline-flex items-center font-medium hover:text-blue-600"
+            >
+              About Us
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <!-- Dropdown -->
+            <div
+              class="nav-dropdown absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded shadow-lg hidden z-10"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Who We Serve
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Accountability
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Contact Us
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Strategic Priorities
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Get Involved
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Indigenous Health
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Public Health
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Leadership
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Media Centre
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Our Vision
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Development Projects
+              </a>
+            </div>
+          </li>
+  
+          <!-- Resources -->
+          <li class="nav-item relative group">
+            <button
+              class="inline-flex items-center font-medium hover:text-blue-600"
+            >
+              Resources
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <!-- Dropdown -->
+            <div
+              class="nav-dropdown absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded shadow-lg hidden z-10"
+            >
+              <a
+                href="https://www2.gov.bc.ca/gov/content/health/health-drug-coverage/pharmacare-for-bc-residents"
+                class="block px-4 py-2 text-sm text-gray-700"
+                target="_blank"
+              >
+                Pharmacare BC
+              </a>
+              <a
+                href="https://www.alberta.ca/health.aspx"
+                class="block px-4 py-2 text-sm text-gray-700"
+                target="_blank"
+              >
+                Alberta Health
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Nutrition Resources
+              </a>
+            </div>
+          </li>
+  
+          <!-- Special Care -->
+          <li class="nav-item relative group">
+            <button
+              class="inline-flex items-center font-medium hover:text-blue-600"
+            >
+              Specialized Care
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <!-- Dropdown -->
+            <div
+              class="nav-dropdown absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded shadow-lg hidden z-10"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Disability Support
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                ADHD Programs
+              </a>
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700"
+              >
+                Crohn's Disease
+              </a>
+              <!-- Add more specialized care links as needed -->
+            </div>
+          </li>
+  
+          <!-- Emergency Button -->
+          <li>
+            <a
+              href="#"
+              class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold flex items-center space-x-1 hover:bg-red-700 transition"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m2-4h.01M12 8c-3.866 0-7 3.134-7 7v5h14v-5c0-3.866-3.134-7-7-7z"
+                ></path>
+              </svg>
+              <span>Emergency</span>
+            </a>
+          </li>
+        </ul>
+  
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button class="text-gray-600 hover:text-gray-800 focus:outline-none">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-4">Welcome to AIDEX Health</h2>
+      <p class="mb-8 text-lg">
+        A centralized patient record system designed to improve care, streamline workflows, and empower both patients and providers.
+      </p>
+      <a href="#services" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded-full shadow hover:bg-gray-100 transition">
+        Explore Our Services
+      </a>
+    </div>
+  </section>
+
+  <!-- Services/Pages Cards Section -->
+  <section id="services" class="py-16">
+    <div class="container mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-12">Our Portal Services</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+         <!-- Card: Visit History -->
+         <a href="visit_history.html" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+            <div class="flex items-center mb-4">
+              <img src="https://via.placeholder.com/40" alt="Visit History" class="w-10 h-10 mr-3" />
+              <h4 class="text-xl font-semibold">Visit History</h4>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Access your past clinical visits, lab results, and appointment details.
+            </p>
+          </a>
+        
+        <!-- Card: Immunizations -->
+        <a href="immunization.html" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/40" alt="Immunizations" class="w-10 h-10 mr-3" />
+            <h4 class="text-xl font-semibold">Immunizations</h4>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Check your vaccine records, status, and upcoming recommendations.
+          </p>
+        </a>
+        <!-- Card: Medications -->
+        <a href="medication.html" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/40" alt="Medications" class="w-10 h-10 mr-3" />
+            <h4 class="text-xl font-semibold">Medications</h4>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Manage prescriptions, refills, and get personalized medication guidance.
+          </p>
+        </a>
+        <!-- Card: Smart Watch Integration -->
+        <a href="smart_watch.html" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/40" alt="Smart Watch" class="w-10 h-10 mr-3" />
+            <h4 class="text-xl font-semibold">Smart Watch</h4>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Sync your wearable for real-time health tracking and anomaly alerts.
+          </p>
+        </a>
+       <!-- Card: Patient Health Summary -->
+       <a href="health_analysis.html" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/40" alt="Health Summary" class="w-10 h-10 mr-3" />
+          <h4 class="text-xl font-semibold">Patient Summary</h4>
+        </div>
+        <p class="text-gray-600 text-sm">
+          View critical health information, vital signs, and recent doctor visits.
+        </p>
+      </a>
+        <!-- Card: Support -->
+        <a href="support.html" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/40" alt="Support" class="w-10 h-10 mr-3" />
+            <h4 class="text-xl font-semibold">Support</h4>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Get help from our AI chatbot or connect with healthcare professionals.
+          </p>
+        </a>
+        <!-- Card: Project Overview -->
+        <a href="Technation_v2.pdf" target="_blank" class="card bg-white rounded-lg shadow p-6 transform transition hover:scale-105">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/40" alt="Project Overview" class="w-10 h-10 mr-3" />
+            <h4 class="text-xl font-semibold">Project Overview</h4>
+          </div>
+          <p class="text-gray-600 text-sm">
+            Learn more about our centralized, FHIR-compliant patient record system.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-4 py-6 text-center">
+      <p class="text-gray-600">&copy; 2025 AIDEX Health. All rights reserved.</p>
+      <p class="text-gray-500 text-sm mt-2">For emergency inquiries, please call 911.</p>
+    </div>
+  </footer>
+</body>
+</html>

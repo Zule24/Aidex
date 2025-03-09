@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Smart - Smart Watch Integration</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f7fa;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-icon {
+      width: 24px;
+      height: 24px;
+      background-color: #e8f4fd;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .vital-value {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+    .vital-unit {
+      font-size: 1rem;
+      color: #7f8c8d;
+    }
+    .vital-status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .status-normal {
+      background-color: #e6f7ed;
+      color: #2ecc71;
+    }
+    .status-warning {
+      background-color: #fff7e6;
+      color: #f39c12;
+    }
+    .status-alert {
+      background-color: #fce6e6;
+      color: #e74c3c;
+    }
+    .chart-container {
+      height: 150px;
+      margin-top: 15px;
+      position: relative;
+    }
+    .chart-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C30,40 60,60 90,50 C120,40 150,70 180,50 C210,30 240,45 270,40 C300,35 300,50 300,50' stroke='%233498db' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    .chart-area {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C30,40 60,60 90,50 C120,40 150,70 180,50 C210,30 240,45 270,40 C300,35 300,50 300,50 L300,100 L0,100 Z' fill='%23e8f4fd' stroke='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      color: #95a5a6;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+    .trend-info {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+    .trend-up {
+      color: #e74c3c;
+    }
+    .trend-down {
+      color: #2ecc71;
+    }
+    .button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #2980b9;
+    }
+    .anomaly-card {
+      background-color: #fdf2f2;
+      border-left: 4px solid #e74c3c;
+    }
+    .alert-box {
+      background-color: rgba(231, 76, 60, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .alert-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .alert-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #e74c3c;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+    }
+    .alert-title {
+      font-weight: 600;
+      margin: 0;
+      color: #e74c3c;
+    }
+    .timeline {
+      margin-top: 30px;
+      padding-left: 20px;
+      border-left: 2px solid #e8e8e8;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 25px;
+      padding-left: 20px;
+    }
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #3498db;
+    }
+    .timeline-normal:before {
+      background-color: #2ecc71;
+    }
+    .timeline-warning:before {
+      background-color: #f39c12;
+    }
+    .timeline-alert:before {
+      background-color: #e74c3c;
+    }
+    .timeline-date {
+      font-size: 0.85rem;
+      color: #7f8c8d;
+      margin-bottom: 5px;
+    }
+    .timeline-content {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .sync-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f0f7ff;
+      border-radius: 8px;
+    }
+    .sync-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .progress-container {
+      height: 4px;
+      width: 100%;
+      background-color: #ecf0f1;
+      border-radius: 2px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      border-radius: 2px;
+    }
+    .progress-normal {
+      background-color: #2ecc71;
+    }
+    .progress-warning {
+      background-color: #f39c12;
+    }
+    .progress-alert {
+      background-color: #e74c3c;
+    }
+    .health-details {
+      margin-top: 10px;
+    }
+    .health-detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .health-detail-label {
+      color: #7f8c8d;
+    }
+    .device-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .device-icon {
+      width: 30px;
+      height: 30px;
+      background-color: #e8f4fd;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Smart Watch Health Monitoring</h1>
+      <p>Real-time health tracking and anomaly detection</p>
+    </div>
+    <div class="logo">HS</div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <div class="card-icon">
+            <img src="/api/placeholder/24/24" alt="Heart Rate" />
+          </div>
+          Heart Rate
+        </h2>
+        <span class="vital-status status-normal">Normal</span>
+      </div>
+      <div class="vital-value">72 <span class="vital-unit">bpm</span></div>
+      <div class="trend-info">
+        <img src="/api/placeholder/16/16" alt="Trend" />
+        5% lower than yesterday
+      </div>
+      <div class="chart-container">
+        <div class="chart-area"></div>
+        <div class="chart-line"></div>
+      </div>
+      <div class="chart-labels">
+        <span>6am</span>
+        <span>9am</span>
+        <span>12pm</span>
+        <span>3pm</span>
+        <span>6pm</span>
+        <span>Now</span>
+      </div>
+      <div class="health-details">
+        <div class="health-detail-item">
+          <span class="health-detail-label">Resting Heart Rate</span>
+          <span>68 bpm</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">Max Today</span>
+          <span>118 bpm (1:30 PM)</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">Min Today</span>
+          <span>58 bpm (3:20 AM)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <div class="card-icon">
+            <img src="/api/placeholder/24/24" alt="Blood Pressure" />
+          </div>
+          Blood Pressure
+        </h2>
+        <span class="vital-status status-warning">Elevated</span>
+      </div>
+      <div class="vital-value">132/85 <span class="vital-unit">mmHg</span></div>
+      <div class="trend-info trend-up">
+        <img src="/api/placeholder/16/16" alt="Trend Up" />
+        8% higher than yesterday
+      </div>
+      <div class="chart-container">
+        <div class="chart-area"></div>
+        <div class="chart-line"></div>
+      </div>
+      <div class="chart-labels">
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Today</span>
+      </div>
+      <div class="health-details">
+        <div class="health-detail-item">
+          <span class="health-detail-label">Morning Average</span>
+          <span>130/83 mmHg</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">Evening Average</span>
+          <span>135/87 mmHg</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">7-Day Trend</span>
+          <span class="trend-up">↑ 5 points</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <div class="card-icon">
+            <img src="/api/placeholder/24/24" alt="Oxygen" />
+          </div>
+          Oxygen Saturation
+        </h2>
+        <span class="vital-status status-normal">Normal</span>
+      </div>
+      <div class="vital-value">98<span class="vital-unit">%</span></div>
+      <div class="trend-info">
+        <img src="/api/placeholder/16/16" alt="Trend" />
+        Stable compared to yesterday
+      </div>
+      <div class="chart-container">
+        <div class="chart-area"></div>
+        <div class="chart-line"></div>
+      </div>
+      <div class="chart-labels">
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Today</span>
+      </div>
+      <div class="health-details">
+        <div class="health-detail-item">
+          <span class="health-detail-label">Lowest Today</span>
+          <span>96% (during sleep)</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">30-Day Average</span>
+          <span>97.8%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <div class="card-icon">
+            <img src="/api/placeholder/24/24" alt="Activity" />
+          </div>
+          Activity Tracking
+        </h2>
+        <span class="vital-status status-normal">On Track</span>
+      </div>
+      <div class="vital-value">8,754 <span class="vital-unit">steps</span></div>
+      <div class="trend-info">
+        <img src="/api/placeholder/16/16" alt="Trend" />
+        87% of daily goal (10,000 steps)
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar progress-normal" style="width: 87%;"></div>
+      </div>
+      <div class="health-details">
+        <div class="health-detail-item">
+          <span class="health-detail-label">Distance</span>
+          <span>4.2 miles</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">Active Minutes</span>
+          <span>42 mins</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">Calories Burned</span>
+          <span>1,845 kcal</span>
+        </div>
+        <div class="health-detail-item">
+          <span class="health-detail-label">Floors Climbed</span>
+          <span>12 floors</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card anomaly-card">
+    <div class="alert-header">
+      <div class="alert-icon">!</div>
+      <div>
+        <h3 class="alert-title">Health Anomaly Detected</h3>
+        <p>Irregular heart rhythm detected during sleep (2:15 AM - 2:45 AM)</p>
+      </div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-area"></div>
+      <div class="chart-line"></div>
+    </div>
+    <div class="chart-labels">
+      <span>1am</span>
+      <span>2am</span>
+      <span>3am</span>
+      <span>4am</span>
+      <span>5am</span>
+      <span>6am</span>
+    </div>
+    <p>Our AI analysis identified an unusual heart rhythm pattern that occurred during your sleep. This pattern has been observed 3 times in the past month.</p>
+    <div style="display: flex; gap: 10px; margin-top: 15px;">
+      <button class="button">Schedule Doctor Consultation</button>
+      <button class="button" style="background-color: transparent; color: #3498db; border: 1px solid #3498db;">Dismiss</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Health Insights</h2>
+    <div class="timeline">
+      <div class="timeline-item timeline-alert">
+        <div class="timeline-date">Today, 2:15 AM</div>
+        <div class="timeline-content">
+          <h3>Irregular Heart Rhythm Detected</h3>
+          <p>An unusual pattern in your heart rate was detected during sleep. This might be related to your recent increase in caffeine consumption.</p>
+          <button class="button">Learn More</button>
+        </div>
+      </div>
+      <div class="timeline-item timeline-warning">
+        <div class="timeline-date">Yesterday, 2:30 PM</div>
+        <div class="timeline-content">
+          <h3>Elevated Blood Pressure After Meeting</h3>
+          <p>Your blood pressure spiked to 142/92 mmHg following your work meeting. This could indicate a stress response.</p>
+          <button class="button">View Stress Management Tips</button>
+        </div>
+      </div>
+      <div class="timeline-item timeline-normal">
+        <div class="timeline-date">October 12, 9:45 AM</div>
+        <div class="timeline-content">
+          <h3>Exercise Goal Achieved</h3>
+          <p>You've reached your weekly activity goal of 35,000 steps. Your resting heart rate has improved by 3 bpm since last month.</p>
+          <button class="button">View Activity Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sync-info">
+    <div class="sync-icon">
+      <img src="/api/placeholder/24/24" alt="Apple Health" />
+    </div>
+    <div style="flex: 1;">
+      <h3 style="margin: 0 0 5px 0;">Synced with Apple Health</h3>
+      <p style="margin: 0;">Your data is being continuously synchronized with Apple Health for comprehensive health tracking.</p>
+      <div class="device-info">
+        <div class="device-icon">
+          <img src="/api/placeholder/16/16" alt="Watch" />
+        </div>
+        <span>Apple Watch Series 8 • Last synced 5 minutes ago</span>
+      </div>
+    </div>
+    <button class="button">Manage Sync</button>
+  </div>
+
+  <div class="footer">
+    <p>Health Smart Smart Watch Integration | Last updated: October 15, 2024</p>
+    <p>This information is intended for general wellness monitoring and should not replace professional medical advice.</p>
+    <p>© 2025 Health Smart. All rights reserved.</p>
+  </div>
+</body>
+</html>
